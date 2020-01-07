@@ -18,7 +18,7 @@ public class languageControl : MonoBehaviour {
     public TextMeshProUGUI textScoreTitle;
     public TextMeshProUGUI textHighscoreTitle;
 
-    //properties
+    //Özellikler
     public Language currentLanguage { get; set; }
 
     void awake () {

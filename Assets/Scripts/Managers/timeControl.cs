@@ -9,33 +9,40 @@ public class timeControl : MonoBehaviour {
 
     //Özellikler
     public int time { get; set; } //kalan zaman
-    public float timeDuration { get; set; } //zaman akış hızı
-    public int timeStep { get; set; } //zaman artış basamağı
+    public float timeDuration { get; set; } = 1f; //zaman akış hızı
+    public int timeStep { get; set; } = 1; //zaman artış basamağı
 
     void Awake () {
         instance = this;
     }
 
     void Start () {
-        time = startTimeSec;
-        timeDuration = 1;
-        timeStep = 1;
-        StartCoroutine ("timeCounter");
-    }
-
-    IEnumerator timeCounter () {
-        for (int i = 0; i < startTimeSec; i++) {
-            yield return new WaitForSeconds (timeDuration);
-            time -= timeStep;
-            if (time <= 10)
-                UIControl.instance.textTime.color = Color.red;
-
-        }
+        time = startTimeSec;      
     }
 
     void FixedUpdate () {
+
         if (time == 0) {
             Debug.Log ("Süre doldu!");
+            gameManager.instance.gameEnd ();
         }
+    }
+
+    public void startTimeCounter(){
+        StartCoroutine("timeCounter");
+    }
+
+    public void stopTimeCounter(){
+        StopCoroutine("timeCounter");
+    }
+
+    private IEnumerator timeCounter () {
+
+        if (gameManager.instance.gameState == gameManager.GameState.Start) {
+            for (int i = 0; i < startTimeSec; i++) {
+                yield return new WaitForSeconds (timeDuration);
+                time -= timeStep;
+            }
+        } 
     }
 }
