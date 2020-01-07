@@ -1402,6 +1402,7 @@ GameObject:
   - component: {fileID: 1366799786}
   - component: {fileID: 1366799785}
   - component: {fileID: 1366799787}
+  - component: {fileID: 1366799788}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1435,6 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc8586c5aeea9f439f42bb029371410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameState: 0
 --- !u!114 &1366799785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1447,6 +1449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8223872854d758448a53482a683918c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPadLeft: 2
   textTime: {fileID: 236821860}
   textScore: {fileID: 1987846108}
   textHighscore: {fileID: 0}
@@ -1479,6 +1482,18 @@ MonoBehaviour:
   textTimeTitle: {fileID: 1198236820}
   textScoreTitle: {fileID: 1704883081}
   textHighscoreTitle: {fileID: 956041726}
+--- !u!114 &1366799788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366799782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 040b6210402981142a0c69b0cbd49ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1558501175
 GameObject:
   m_ObjectHideFlags: 0

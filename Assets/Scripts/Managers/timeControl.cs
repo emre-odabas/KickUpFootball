@@ -5,12 +5,12 @@ using UnityEngine;
 public class timeControl : MonoBehaviour {
     public static timeControl instance;
 
-    public int startTimeSec = 59;
+    public int startTimeSec = 59; //başlangıç saniyesi
 
-    //Properties
-    public int time { get; set; }
-    public float timeDuration { get; set; }
-    public int timeStep { get; set; }
+    //Özellikler
+    public int time { get; set; } //kalan zaman
+    public float timeDuration { get; set; } //zaman akış hızı
+    public int timeStep { get; set; } //zaman artış basamağı
 
     void Awake () {
         instance = this;
@@ -29,11 +29,13 @@ public class timeControl : MonoBehaviour {
             time -= timeStep;
             if (time <= 10)
                 UIControl.instance.textTime.color = Color.red;
-            
+
         }
     }
 
-    void Update () {
-
+    void FixedUpdate () {
+        if (time == 0) {
+            Debug.Log ("Süre doldu!");
+        }
     }
 }

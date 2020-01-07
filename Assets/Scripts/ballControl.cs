@@ -17,7 +17,6 @@ public class ballControl : MonoBehaviour {
     }
 
     void OnMouseDown () {
-        //Push back
         Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
         Vector2 touchpos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
@@ -32,11 +31,11 @@ public class ballControl : MonoBehaviour {
 
         rb2d.AddForce (direction * pushForce);
 
-        gameManager.instance.setScore ();
+        scoreManeger.instance.setScore ();
     }
     void OnCollisionEnter2D (Collision2D other) {
         if (other.gameObject.tag == "downWall") {
-            gameManager.instance.resetScore ();
+            scoreManeger.instance.resetScore ();
         }
 
     }

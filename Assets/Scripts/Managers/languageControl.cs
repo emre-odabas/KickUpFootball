@@ -11,7 +11,7 @@ public class languageControl : MonoBehaviour {
     public static languageControl instance;
 
     [SerializeField]
-    Language _currentLanguage;
+    private Language _currentLanguage;
 
     //UI elemanları
     public TextMeshProUGUI textTimeTitle;
