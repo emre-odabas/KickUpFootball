@@ -9,7 +9,8 @@ public class timeControl : MonoBehaviour {
 
     //Properties
     public int time { get; set; }
-    public float timeStep { get; set; }
+    public float timeDuration { get; set; }
+    public int timeStep { get; set; }
 
     void Awake () {
         instance = this;
@@ -17,14 +18,18 @@ public class timeControl : MonoBehaviour {
 
     void Start () {
         time = startTimeSec;
-        //timeStep = 1;
+        timeDuration = 1;
+        timeStep = 1;
         StartCoroutine ("timeCounter");
     }
 
     IEnumerator timeCounter () {
         for (int i = 0; i < startTimeSec; i++) {
-            yield return new WaitForSeconds (timeStep);
-            time--;
+            yield return new WaitForSeconds (timeDuration);
+            time -= timeStep;
+            if (time <= 10)
+                UIControl.instance.textTime.color = Color.red;
+            
         }
     }
 
