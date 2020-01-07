@@ -25,7 +25,7 @@ public class ballControl : MonoBehaviour {
         if (direction.y < 0 || direction.y < 0.7f) {
             direction.y = 0.7f;
         }
-        Debug.Log (direction); //x: 0.7 / -0.7   y: 0.7 / -0.7
+        //Debug.Log (direction); //x: 0.7 / -0.7   y: 0.7 / -0.7
 
         rb2d.AddForce (direction * pushForce);
 
