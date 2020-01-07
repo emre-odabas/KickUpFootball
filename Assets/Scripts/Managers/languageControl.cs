@@ -17,6 +17,7 @@ public class languageControl : MonoBehaviour {
     public TextMeshProUGUI textTimeTitle;
     public TextMeshProUGUI textScoreTitle;
     public TextMeshProUGUI textHighscoreTitle;
+    public TextMeshProUGUI textTapToContinue;
 
     //Özellikler
     public Language currentLanguage { get; set; }
@@ -51,6 +52,7 @@ public class languageControl : MonoBehaviour {
                 textTimeTitle.text = "Time";
                 textScoreTitle.text = "Score";
                 textHighscoreTitle.text = "Highscore";
+                textTapToContinue.text = "Tap To Continue";
                 break;
 
                 //TR
@@ -61,6 +63,7 @@ public class languageControl : MonoBehaviour {
                 textTimeTitle.text = "Zaman";
                 textScoreTitle.text = "Skor";
                 textHighscoreTitle.text = "En Yüksek";
+                textTapToContinue.text = "Devam Etmek Icin Dokun";
                 break;
         }
     }

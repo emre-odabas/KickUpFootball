@@ -12,13 +12,14 @@ public class UIControl : MonoBehaviour {
     public int boardPadLeft = 2;
     public float UIAnimationSpeed = 1f;
 
-    [Header("Text ler")]
+    [Header ("Text ler")]
     public TextMeshProUGUI textTime;
     public TextMeshProUGUI textScore;
     public TextMeshProUGUI textHighscore;
 
-    [Header("Panel ler")]
+    [Header ("Panel ler")]
     public RectTransform panelScoreBoard;
+    public RectTransform panelClickToStart;
 
     void Awake () {
         instance = this;
@@ -37,6 +38,12 @@ public class UIControl : MonoBehaviour {
         textTime.text = timeControl.instance.time.ToString ();
         textScore.text = scoreManeger.instance.score.ToString ().PadLeft (boardPadLeft, '0');
         textHighscore.text = scoreManeger.instance.highscore.ToString ().PadLeft (boardPadLeft, '0');
+    }
+
+    public void btnClickToStart () {
+        panelClickToStart.gameObject.SetActive(false);
+        gameManager.instance.gameState = gameManager.GameState.Start;
+        timeControl.instance.startTimeCounter ();
     }
 
 }

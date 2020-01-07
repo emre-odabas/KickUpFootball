@@ -20,13 +20,13 @@ public class ballControl : MonoBehaviour {
         else
             rb2d.simulated = false;
 
-        if (Input.GetKeyDown (KeyCode.S)) {
+        /*if (Input.GetKeyDown (KeyCode.S)) {
             gameManager.instance.gameState = gameManager.GameState.Start;
             timeControl.instance.startTimeCounter();
         } else if (Input.GetKeyDown (KeyCode.P)) {
             gameManager.instance.gameState = gameManager.GameState.Pause;
             timeControl.instance.stopTimeCounter();
-        }
+        }*/
     }
 
     void OnMouseDown () {
@@ -51,6 +51,6 @@ public class ballControl : MonoBehaviour {
         if (other.gameObject.tag == "downWall") {
             scoreManeger.instance.resetScore ();
         }
-
     }
+
 }
