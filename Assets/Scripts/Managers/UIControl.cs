@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIControl : MonoBehaviour {
@@ -40,10 +41,13 @@ public class UIControl : MonoBehaviour {
         textHighscore.text = scoreManeger.instance.highscore.ToString ().PadLeft (boardPadLeft, '0');
     }
 
+    //Butonlar
+  
     public void btnClickToStart () {
-        panelClickToStart.gameObject.SetActive(false);
+        panelClickToStart.gameObject.SetActive (false);
         gameManager.instance.gameState = gameManager.GameState.Start;
         timeControl.instance.startTimeCounter ();
     }
+    
 
 }
