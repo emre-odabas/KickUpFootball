@@ -5,8 +5,16 @@ using UnityEngine;
 
 public class ballControl : MonoBehaviour {
 
+    public static ballControl instance;
+
     public float pushForce = 1000;
-    private Rigidbody2D rb2d;
+
+    //Özellikler
+    public Rigidbody2D rb2d { get; set; }
+
+    void Awake(){
+        instance = this;
+    }
 
     void Start () {
         rb2d = gameObject.GetComponent<Rigidbody2D> ();
@@ -15,37 +23,27 @@ public class ballControl : MonoBehaviour {
 
     void Update () {
 
-        if (gameManager.instance.gameState == gameManager.GameState.Start)
+        /*if (gameManager.instance.gameState == gameManager.GameState.Start)
             rb2d.simulated = true;
         else
-            rb2d.simulated = false;
-
-        /*if (Input.GetKeyDown (KeyCode.S)) {
-            gameManager.instance.gameState = gameManager.GameState.Start;
-            timeControl.instance.startTimeCounter();
-        } else if (Input.GetKeyDown (KeyCode.P)) {
-            gameManager.instance.gameState = gameManager.GameState.Pause;
-            timeControl.instance.stopTimeCounter();
-        }*/
+            rb2d.simulated = false;*/
     }
 
     void OnMouseDown () {
+        if (gameManager.instance.gameState == gameManager.GameState.Start) {
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition); 
+            Vector2 touchpos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+            Vector2 direction = (Vector2) gameObject.transform.position - touchpos;
 
-        Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-        Vector2 touchpos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+            //direction x: 0.7 / -0.7   
+            //direction y: 0.7 / -0.7
 
-        Vector2 direction = (Vector2) gameObject.transform.position - touchpos;
-
-        //direction x: 0.7 / -0.7   
-        //direction y: 0.7 / -0.7
-
-        if (direction.y < 0 || direction.y < 0.7f) {
-            direction.y = 0.7f;
+            if (direction.y < 0 || direction.y < 0.7f) {
+                direction.y = 0.7f;
+            }
+            rb2d.AddForce (direction * pushForce);
+            scoreManeger.instance.setScore ();
         }
-
-        rb2d.AddForce (direction * pushForce);
-
-        scoreManeger.instance.setScore ();
     }
     void OnCollisionEnter2D (Collision2D other) {
         if (other.gameObject.tag == "downWall") {

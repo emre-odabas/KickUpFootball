@@ -20,7 +20,7 @@ public class UIControl : MonoBehaviour {
 
     [Header ("Panel ler")]
     public RectTransform panelScoreBoard;
-    public RectTransform panelClickToStart;
+    public RectTransform panelHome;
 
     void Awake () {
         instance = this;
@@ -44,9 +44,10 @@ public class UIControl : MonoBehaviour {
     //Butonlar
   
     public void btnClickToStart () {
-        panelClickToStart.gameObject.SetActive (false);
+        panelHome.gameObject.SetActive (false);
         gameManager.instance.gameState = gameManager.GameState.Start;
         timeControl.instance.startTimeCounter ();
+        ballControl.instance.rb2d.simulated = true;
     }
     
 

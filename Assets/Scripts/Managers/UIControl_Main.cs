@@ -14,9 +14,9 @@ public class UIControl_Main : MonoBehaviour {
     }
 
     public void btnMainPlayGame () {
-        btnPlayImage.DOScale (new Vector2 (20, 20), UIAnimationSpeed);
-        btnPlayImage.DOLocalRotate (new Vector3 (0, 0, 180), UIAnimationSpeed);
         btnPlayImage.DOAnchorPosX (-400, UIAnimationSpeed);
+        btnPlayImage.DOLocalRotate (new Vector3 (0, 0, 180), UIAnimationSpeed);
+        btnPlayImage.DOScale (new Vector2 (20, 20), UIAnimationSpeed);
         StartCoroutine ("playGameCounter");
     }
     public void btnMainQuitGame () {
@@ -24,9 +24,7 @@ public class UIControl_Main : MonoBehaviour {
     }
 
     IEnumerator playGameCounter () {
-        for (int i = 0; i < UIAnimationSpeed; i++) {
-            yield return new WaitForSeconds (1);
-            SceneManager.LoadScene ("Level");
-        }
+        yield return new WaitForSeconds (UIAnimationSpeed);
+        SceneManager.LoadScene ("Level");
     }
 }
