@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour {
@@ -21,6 +22,9 @@ public class gameManager : MonoBehaviour {
     public GameObject refSpawnParticle;
     public GameObject refSkill;
 
+    //rasgele oluşturulan particle ve objeler için rasgele min-max aralığı
+    public float rndMinTime = 5;
+    public float rndMaxTime = 20;
     public skill[] skills;
 
     //Özellikler
@@ -46,15 +50,15 @@ public class gameManager : MonoBehaviour {
 
     //skillden önce particle effect i verip ondan sonra skill i spawnlıyoruz
     private IEnumerator IESpawnSkillParticle () {
-        float slillDuration = 5;
+        float skillDuration = Random.Range (rndMinTime, rndMaxTime);
         Vector2 camPos = Camera.main.ScreenToWorldPoint (Vector2.zero);
         while (true) {
-            yield return new WaitForSeconds (slillDuration);
+            yield return new WaitForSeconds (skillDuration);
             float rndX = Random.Range (-camPos.x - 1, camPos.x + 1);
             float rndY = Random.Range (-camPos.y - 5, camPos.y + 1);
             GameObject particle = Instantiate (refSpawnParticle, new Vector2 (rndX, rndY), Quaternion.identity);
-            slillDuration = Random.Range (5, 15);
-            Debug.Log ("Skill spawn oluyor. Bir sonraki skill " + slillDuration + " saniye sonra spawn olacak.");
+            skillDuration = Random.Range (rndMinTime, rndMaxTime);
+            //Debug.Log ("Skill spawn oluyor. Bir sonraki skill " + skillDuration + " saniye sonra spawn olacak.");
 
             StartCoroutine ("IESpawnSkill", new Vector2 (rndX, rndY));
         }
@@ -62,8 +66,13 @@ public class gameManager : MonoBehaviour {
 
     private IEnumerator IESpawnSkill (Vector2 skillPos) {
         yield return new WaitForSeconds (3);
-        GameObject itemObject = Instantiate (refSkill, new Vector2 (skillPos.x, skillPos.y), Quaternion.identity);
-        itemObject.transform.GetComponent<SpriteRenderer> ().sprite = skills[0].sprite;
+        int rndSkillIndex = Random.Range (0, skills.Length);
+        GameObject skill = Instantiate (refSkill, new Vector2 (skillPos.x, skillPos.y), Quaternion.identity);
+        skill.transform.DOScale (new Vector2 (0.5f, 0.5f), 1);
+        skill.transform.GetComponent<SpriteRenderer> ().sprite = skills[rndSkillIndex].sprite;
+        skill.transform.GetComponent<destroyTimer> ().destroyTime = skills[rndSkillIndex].duration;
+        skill.transform.GetComponent<destroyTimer> ().isParticle = false;
+        skill.gameObject.tag = skills[rndSkillIndex].skillTag;
     }
 
 }

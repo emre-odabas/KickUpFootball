@@ -22,7 +22,7 @@ public class timeControl : MonoBehaviour {
 
     void FixedUpdate () {
 
-        if (time == 0) {
+        if (time <= 0) {
             Debug.Log ("Süre doldu!");
             gameManager.instance.gameEnd ();
         }

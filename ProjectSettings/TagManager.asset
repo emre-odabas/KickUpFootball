@@ -7,6 +7,17 @@ TagManager:
   - rightWall
   - leftWall
   - downWall
+  - FxTemporaire
+  - ballFast
+  - ballFreeze
+  - ballMax
+  - ballMin
+  - controlReverse
+  - time+10
+  - time-10
+  - timeFast
+  - timeFreeze
+  - timeSlow
   layers:
   - Default
   - TransparentFX

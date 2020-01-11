@@ -2076,8 +2076,19 @@ MonoBehaviour:
     type: 3}
   refSkill: {fileID: 8926607521774096401, guid: 243909045eeb4ef4881ccc1de2cbcbbc,
     type: 3}
+  rndMinTime: 5
+  rndMaxTime: 20
   skills:
-  - {fileID: 11400000, guid: e306ce07e446560479af52fab52bdebb, type: 2}
+  - {fileID: 11400000, guid: 36452c21b992983458575cfd85734bf7, type: 2}
+  - {fileID: 11400000, guid: 4ad40335cf7e19242ac133dafd2fd095, type: 2}
+  - {fileID: 11400000, guid: 31bacd70cb2e0a8469c4d14aa7127a26, type: 2}
+  - {fileID: 11400000, guid: f4a0910847190c444bcf0ad18bb2385d, type: 2}
+  - {fileID: 11400000, guid: 7a17a282651a4c84f86800b62489087b, type: 2}
+  - {fileID: 11400000, guid: 751fd18430e6c314e8802a8902badfd6, type: 2}
+  - {fileID: 11400000, guid: ec77cfe831cceff41b9a0f67267b6239, type: 2}
+  - {fileID: 11400000, guid: 55036e6a92999bd499d3b44105a4a10e, type: 2}
+  - {fileID: 11400000, guid: e856bbc93c3d93744910032711d493cb, type: 2}
+  - {fileID: 11400000, guid: bf2f1eb3aa51a4742adc700aa4569608, type: 2}
 --- !u!1 &1558501175
 GameObject:
   m_ObjectHideFlags: 0
