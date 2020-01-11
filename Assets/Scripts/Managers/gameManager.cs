@@ -6,7 +6,6 @@ public class gameManager : MonoBehaviour {
 
     public static gameManager instance;
 
-    //Oyun durumları
     public enum GameState {
         Wait,
         Start,
@@ -14,42 +13,27 @@ public class gameManager : MonoBehaviour {
         End
     }
 
+    [Header ("OYUN DURUMLARI")]
     [SerializeField]
     private GameState _gameState; //inspector de oyun durumunu görmek için
 
-    //Rasgele özellik sınır alanı
-    public float x;
-    public float y;
+    [Header ("REFERANSLAR")]
+    public GameObject refSpawnParticle;
 
     //Özellikler
     public GameState gameState { get; set; } = GameState.Wait;
 
     void Awake () {
         instance = this;
-    }
 
-    void OnDrawGizmos () {
-        // Draw a yellow sphere at the transform's position
-        Camera camera = Camera.main;
-        float halfHeight = camera.orthographicSize;
-        float halfWidth = camera.aspect * halfHeight;
-
-        //float horizontalMin = -halfWidth;
-        //float horizontalMax = halfWidth;
-        Vector2 campos = Camera.main.ScreenToWorldPoint (Vector2.zero);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube (new Vector2 (0, -1.5f), new Vector2 (campos.x * x, campos.y * y));
-        //Gizmos.DrawWireCube (new Vector2 (0, 0), new Vector2 (halfWidth + 8, halfHeight + 1));
-
-        //Vector3 randomPosition = Camera.main.ScreenToWorldPoint(originPosition + new Vector2 (Random.Range(horizontalMin, horizontalMax), Random.Range (verticalMin, verticalMax)));
     }
 
     void Start () {
-        //gameState = GameState.Start;
 
-        //_gameState = GameState.Wait;
-        //Debug.Log(_gameState);
+    }
+
+    void Update () {
+
     }
 
     void FixedUpdate () {
@@ -58,6 +42,26 @@ public class gameManager : MonoBehaviour {
 
     public void gameEnd () {
         gameState = GameState.End;
+    }
+
+    public void spawnSkill () {
+        StartCoroutine ("IESpawnSkill");
+    }
+
+     IEnumerator IESpawnSkill () {
+        Debug.Log ("spawnskill aktif");
+        //rndSkill
+        Vector2 camPos = Camera.main.ScreenToWorldPoint (Vector2.zero);
+
+        while (true) {
+            if (gameState == GameState.Start) {
+                yield return new WaitForSeconds (5);
+                float rndX = Random.Range (-camPos.x - 1, camPos.x + 1);
+                float rndY = Random.Range (-camPos.y - 5, camPos.y + 1);
+                GameObject particle = Instantiate (refSpawnParticle, new Vector2 (rndX, rndY), Quaternion.identity);
+                Debug.Log ("skill spawn oldu");
+            }
+        }
     }
 
 }

@@ -41,11 +41,12 @@ public class UIControl : MonoBehaviour {
         textHighscore.text = scoreManeger.instance.highscore.ToString ().PadLeft (boardPadLeft, '0');
     }
 
-    //Butonlar
-  
+
+    //Butonlar 
     public void btnClickToStart () {
         panelHome.gameObject.SetActive (false);
         gameManager.instance.gameState = gameManager.GameState.Start;
+        gameManager.instance.spawnSkill();
         timeControl.instance.startTimeCounter ();
         ballControl.instance.rb2d.simulated = true;
     }
