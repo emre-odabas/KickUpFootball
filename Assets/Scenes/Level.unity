@@ -2074,7 +2074,10 @@ MonoBehaviour:
   _gameState: 2
   refSpawnParticle: {fileID: 1545806602296978, guid: 72d519731618976439ca6fe4d17c614a,
     type: 3}
-  rndPosSize: {x: 0, y: 0}
+  refSkill: {fileID: 8926607521774096401, guid: 243909045eeb4ef4881ccc1de2cbcbbc,
+    type: 3}
+  skills:
+  - {fileID: 11400000, guid: e306ce07e446560479af52fab52bdebb, type: 2}
 --- !u!1 &1558501175
 GameObject:
   m_ObjectHideFlags: 0
